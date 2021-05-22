@@ -21,20 +21,12 @@ class Car {
     this.name = name
     this.lincenceNumber = lincenceNumber
   }
-  taskStart() {}
-  taskEnd() {}
 }
 
 class NormalCar extends Car {
   constructor(name, lincenceNumber) {
     super(name, lincenceNumber)
     this.price = 1
-  }
-  taskStart() {
-    return `Car imformation: name: ${this.name}, lincenceNumber: ${this.lincenceNumber}`
-  }
-  taskEnd(mileage) {
-    return mileage * this.price
   }
 }
 
@@ -43,11 +35,17 @@ class VipCar extends Car {
     super(name, lincenceNumber)
     this.price = 2
   }
-  taskStart() {
-    return `Car imformation: name: ${this.name}, lincenceNumber: ${this.lincenceNumber}`
+}
+
+class Task {
+  constructor(car) {
+    this.car = car
   }
-  taskEnd(mileage) {
-    return mileage * this.price
+  start() {
+    return `Car imformation: name: ${this.car.name}, lincenceNumber: ${this.car.lincenceNumber}`
+  }
+  end(mileage) {
+    return mileage * this.car.price
   }
 }
 
@@ -55,10 +53,12 @@ class VipCar extends Car {
 
 // normal car
 let normal = new NormalCar('NormalCar', '沪A88888')
-alert(normal.taskStart())
-alert(normal.taskEnd(5))
+let normalTask = new Task(normal)
+alert(normalTask.start())
+alert(normalTask.end(5))
 
 // vip car
 let vip = new VipCar('VipCar', '沪A99999')
-alert(vip.taskStart())
-alert(vip.taskEnd(5))
+let vipTask = new Task(vip)
+alert(vipTask.start())
+alert(vipTask.end(5))
