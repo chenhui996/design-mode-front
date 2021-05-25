@@ -3,5 +3,7 @@
         "es2015",
         "latest"
     ],
-    "plugins": []
+    "plugins": [
+        "transform-decorators-legacy"
+    ]
 }
