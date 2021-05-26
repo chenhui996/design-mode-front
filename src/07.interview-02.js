@@ -71,6 +71,7 @@ class Park {
     this.camera = new Camera()
     this.carList = []
     this.screen = new Screen()
+    
   }
   emptyNum() {
     return this.floors
@@ -81,13 +82,19 @@ class Park {
   }
   in(car) {
     let info = this.camera.shot(car)
-    // console.log(info)
-    let f = parseInt((Math.random() * 100) % 3)
-    let p = parseInt((Math.random() * 100) % 100)
-    let place = this.floors[f].places[p]
-    place.in()
-    info.place = place
-    this.carList[car.num] = info
+    // console.log(this.floors.length)
+    let f = parseInt((Math.random() * 100) % this.floors.length)
+    let p = parseInt((Math.random() * 100) % this.floors[f].places.length)
+    // 检测车辆是否为空
+    if (this.floors[f].places[p].empty) {
+      let place = this.floors[f].places[p]
+      place.in()
+      info.place = place
+      this.carList[car.num] = info
+    }
+    else{
+      this.in(car)
+    }
   }
   out(car) {
     // 获取信息
