@@ -1,4 +1,4 @@
-// 原型模式-demo
+// 原型模式 - demo
 let prototype = {
   getName: function () {
     return this.first + '' + this.last
